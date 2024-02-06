@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+
+
 const StyledCard = styled.div`
   width: 190px;
   height: 254px;
@@ -11,6 +13,7 @@ const StyledCard = styled.div`
   border: 2px solid #c3c6ce;
   transition: 0.5s ease-out;
   overflow: visible;
+  margin-bottom: 10%;
 
   &:hover {
     border-color: #008bf8;
@@ -47,9 +50,15 @@ const StyledButton = styled.button`
   }
 `;
 
+const ListaContainer = styled.div`
+  display: flex;
+  gap: 24px;
+
+`
+
 const ContactList = ({ contacts, deleteContact, editContact }) => {
   return (
-    <div>
+    <ListaContainer>
       {contacts.map((contact, index) => (
         <StyledCard key={index}>
           <StyledDetails>
@@ -62,7 +71,7 @@ const ContactList = ({ contacts, deleteContact, editContact }) => {
           <StyledButton onClick={() => deleteContact(index)}>Excluir</StyledButton>
         </StyledCard>
       ))}
-    </div>
+    </ListaContainer>
   );
 };
 

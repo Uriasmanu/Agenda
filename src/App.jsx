@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import ContactForm from './componentes/ContactForm';
 import ContactList from './componentes/ContactList';
+import styled from 'styled-components';
 
+
+const AppContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+`
 
 const App = () => {
   const [contacts, setContacts] = useState(
@@ -27,15 +36,18 @@ const App = () => {
   };
 
   return (
-    <div>
-      <h1>Agenda de Contatos</h1>
-      <ContactForm addContact={addContact} />
+    <>
+      <AppContainer>
+        <h1>Agenda de Contatos</h1>
+        <ContactForm addContact={addContact} />
+      </AppContainer>
+      
       <ContactList
         contacts={contacts}
         deleteContact={deleteContact}
         editContact={editContact}
       />
-    </div>
+    </>
   );
 };
 
