@@ -1,67 +1,57 @@
 import React from 'react';
 import styled from 'styled-components';
 
-
-
-const StyledCard = styled.div`
-  width: 27%;
-  height: auto;
-  border-radius: 20px;
-  background: #f5f5f5;
-  position: relative;
-  padding: 1.8rem;
-  border: 2px solid #c3c6ce;
-  transition: 0.5s ease-out;
-  overflow: visible;
-  margin-bottom: 5%;
-  padding: 5%;
-
-  &:hover {
-    border-color: #008bf8;
-    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
-  }
-`;
-
-const StyledDetails = styled.div`
-  color: black;
-  height: 100%;
-  gap: 0.5em;
-  display: grid;
-  place-content: center;
-`;
-
-const StyledButton = styled.button`
-  transform: translate(-50%, 125%);
-  width: 60%;
-  border-radius: 1rem;
-  border: none;
-  background-color: #008bf8;
-  color: #fff;
-  font-size: 1rem;
-  padding: 0.5rem 1rem;
-  position: relative;
-  left: 26%;
-  bottom: 0;
-  opacity: 0;
-  transition: 0.3s ease-out;
-
-  ${StyledCard}:hover & {
-    transform: translate(-50%, 50%);
-    opacity: 1;
-  }
-`;
-
 const ListaContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  gap: 5%;
   align-items: center;
+`;
 
-`
+const StyledCard = styled.div`
+      overflow: hidden;
+    position: relative;
+    border-radius: 0.5rem;
+    width: 350px;
+    padding: 5% 0;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    background-color: #fff;
+    margin-bottom: 1rem;
+    align-items: center;
+    display: flex;
+    border: 1px solid #949494;
+    gap: 5px;
+    justify-content: space-evenly;
+    padding: 1%;
+`;
+
+const StyledDetails = styled.div`
+  padding: 1rem;
+`;
 
 const ContainerBottons = styled.div`
-  display: flex;
-  gap: 10px;
-`
+      display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+`;
+
+const StyledButton = styled.button`
+  padding: 0.5rem 1rem;
+  background-color: #1aa06d;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #0d6e4b;
+  }
+`;
 
 const ContactList = ({ contacts, deleteContact, editContact }) => {
   return (
