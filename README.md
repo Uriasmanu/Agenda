@@ -1,8 +1,46 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Agenda de Contatos
 
-Currently, two official plugins are available:
+Este é um aplicativo de agenda de contatos simples, construído com React, onde você pode adicionar, visualizar, editar e excluir contatos.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Funcionalidades
+
+- Adicionar um novo contato, fornecendo nome, e-mail, endereço e telefone.
+- Visualizar todos os contatos adicionados.
+- Editar informações de um contato existente.
+- Excluir um contato da lista.
+
+## Instalação
+
+1. Clone o repositório para o seu ambiente local:
+
+
+2. Entre no diretório do projeto:
+
+
+3. Instale as dependências:
+
+
+4. Inicie o servidor de desenvolvimento:
+
+
+5. O aplicativo estará disponível em [http://localhost:3000](http://localhost:3000).
+
+## Uso
+
+- Na página inicial, você verá um formulário para adicionar um novo contato.
+- Abaixo do formulário, serão exibidos todos os contatos adicionados, onde você pode editar ou excluir cada um deles.
+
+## Tecnologias Utilizadas
+
+- React
+- Styled Components
+- localStorage (para armazenar os contatos localmente)
+
+## Contribuindo
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir um pull request ou reportar problemas encontrados.
+
+## Licença
+
+Este projeto está licenciado sob a [Licença MIT](https://opensource.org/licenses/MIT).
