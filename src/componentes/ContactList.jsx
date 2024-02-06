@@ -4,8 +4,8 @@ import styled from 'styled-components';
 
 
 const StyledCard = styled.div`
-  width: 190px;
-  height: 254px;
+  width: 27%;
+  height: auto;
   border-radius: 20px;
   background: #f5f5f5;
   position: relative;
@@ -13,7 +13,8 @@ const StyledCard = styled.div`
   border: 2px solid #c3c6ce;
   transition: 0.5s ease-out;
   overflow: visible;
-  margin-bottom: 10%;
+  margin-bottom: 5%;
+  padding: 5%;
 
   &:hover {
     border-color: #008bf8;
@@ -38,8 +39,8 @@ const StyledButton = styled.button`
   color: #fff;
   font-size: 1rem;
   padding: 0.5rem 1rem;
-  position: absolute;
-  left: 50%;
+  position: relative;
+  left: 26%;
   bottom: 0;
   opacity: 0;
   transition: 0.3s ease-out;
@@ -52,8 +53,14 @@ const StyledButton = styled.button`
 
 const ListaContainer = styled.div`
   display: flex;
-  gap: 24px;
+  flex-direction: column;
+  align-items: center;
 
+`
+
+const ContainerBottons = styled.div`
+  display: flex;
+  gap: 10px;
 `
 
 const ContactList = ({ contacts, deleteContact, editContact }) => {
@@ -67,8 +74,10 @@ const ContactList = ({ contacts, deleteContact, editContact }) => {
             <div className="text-body">{contact.address}</div>
             <div className="text-body">{contact.phone}</div>
           </StyledDetails>
-          <StyledButton onClick={() => editContact(index)}>Editar</StyledButton>
-          <StyledButton onClick={() => deleteContact(index)}>Excluir</StyledButton>
+          <ContainerBottons>
+            <StyledButton onClick={() => editContact(index)}>Editar</StyledButton>
+            <StyledButton onClick={() => deleteContact(index)}>Excluir</StyledButton>
+          </ContainerBottons>
         </StyledCard>
       ))}
     </ListaContainer>
