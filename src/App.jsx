@@ -1,35 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState, useEffect } from 'react';
+import ContactForm from './componentes/ContactForm';
+import ContactList from './componentes/ContactList';
 
-function App() {
-  const [count, setCount] = useState(0)
+
+const App = () => {
+  const [contacts, setContacts] = useState(
+    JSON.parse(localStorage.getItem('contacts')) || []
+  );
+
+  useEffect(() => {
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+  }, [contacts]);
+
+  const addContact = (newContact) => {
+    setContacts([...contacts, newContact]);
+  };
+
+  const deleteContact = (index) => {
+    const updatedContacts = contacts.filter((contact, i) => i !== index);
+    setContacts(updatedContacts);
+  };
+
+  const editContact = (index) => {
+    // Implementar edição do contato aqui
+    alert('Função de edição ainda não implementada.');
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div>
+      <h1>Agenda de Contatos</h1>
+      <ContactForm addContact={addContact} />
+      <ContactList
+        contacts={contacts}
+        deleteContact={deleteContact}
+        editContact={editContact}
+      />
+    </div>
+  );
+};
 
-export default App
+export default App;
