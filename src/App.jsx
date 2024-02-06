@@ -1,28 +1,38 @@
+// App.jsx
+
 import React, { useState, useEffect } from 'react';
 import ContactForm from './componentes/ContactForm';
 import ContactList from './componentes/ContactList';
 import styled from 'styled-components';
-
 
 const AppContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  
-`
+`;
 
 const App = () => {
   const [contacts, setContacts] = useState(
     JSON.parse(localStorage.getItem('contacts')) || []
   );
+  const [editingIndex, setEditingIndex] = useState(null);
 
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts]);
 
   const addContact = (newContact) => {
-    setContacts([...contacts, newContact]);
+    if (editingIndex !== null) {
+      // Se estiver editando, atualize o contato existente
+      const updatedContacts = [...contacts];
+      updatedContacts[editingIndex] = newContact;
+      setContacts(updatedContacts);
+      setEditingIndex(null);
+    } else {
+      // Se não estiver editando, adicione um novo contato
+      setContacts([...contacts, newContact]);
+    }
   };
 
   const deleteContact = (index) => {
@@ -31,15 +41,15 @@ const App = () => {
   };
 
   const editContact = (index) => {
-    // Implementar edição do contato aqui
-    alert('Função de edição ainda não implementada.');
+    // Ao editar, preencha o formulário com os detalhes do contato atual
+    setEditingIndex(index);
   };
 
   return (
     <>
       <AppContainer>
         <h1>Agenda de Contatos</h1>
-        <ContactForm addContact={addContact} />
+        <ContactForm addContact={addContact} editingIndex={editingIndex} contacts={contacts} />
       </AppContainer>
       
       <ContactList

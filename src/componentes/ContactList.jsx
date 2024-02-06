@@ -7,23 +7,24 @@ const ListaContainer = styled.div`
   justify-content: space-around;
   gap: 5%;
   align-items: center;
+  margin-top: 5%;
 `;
 
 const StyledCard = styled.div`
-      overflow: hidden;
-    position: relative;
-    border-radius: 0.5rem;
-    width: 350px;
-    padding: 5% 0;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    background-color: #fff;
-    margin-bottom: 1rem;
-    align-items: center;
-    display: flex;
-    border: 1px solid #949494;
-    gap: 5px;
-    justify-content: space-evenly;
-    padding: 1%;
+  overflow: hidden;
+  position: relative;
+  border-radius: 0.5rem;
+  width: 350px;
+  padding: 5% 0;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  background-color: #fff;
+  margin-bottom: 1rem;
+  align-items: center;
+  display: flex;
+  border: 1px solid #949494;
+  gap: 5px;
+  justify-content: space-evenly;
+  padding: 3%;
 `;
 
 const StyledDetails = styled.div`
@@ -31,10 +32,10 @@ const StyledDetails = styled.div`
 `;
 
 const ContainerBottons = styled.div`
-      display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 `;
 
 const StyledButton = styled.button`
@@ -54,6 +55,7 @@ const StyledButton = styled.button`
 `;
 
 const ContactList = ({ contacts, deleteContact, editContact }) => {
+  
   return (
     <ListaContainer>
       {contacts.map((contact, index) => (

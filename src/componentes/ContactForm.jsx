@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 10%;
 `;
 
 const StyledInput = styled.input`
@@ -24,14 +23,38 @@ const StyledButton = styled.button`
   cursor: pointer;
 `;
 
-const ContactForm = ({ addContact }) => {
+const FormContainer = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 300px;
+`;
+
+const ContactForm = ({ addContact, editingIndex, contacts }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [address, setAddress] = useState('');
   const [phone, setPhone] = useState('');
 
+  useEffect(() => {
+    // Se estiver editando, preencha o formulário com os detalhes do contato atual
+    if (editingIndex !== null) {
+      const { name, email, address, phone } = contacts[editingIndex];
+      setName(name);
+      setEmail(email);
+      setAddress(address);
+      setPhone(phone);
+    }
+  }, [editingIndex]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+   
+    // Verifica se os outros campos estão vazios
+    if (!name.trim() || !address.trim() || !phone.trim()) {
+      alert('Todos os campos, exceto o e-mail, são obrigatórios.');
+      return; // Retorna sem adicionar o contato se algum campo estiver vazio
+    }
     addContact({ name, email, address, phone });
     setName('');
     setEmail('');
@@ -40,37 +63,13 @@ const ContactForm = ({ addContact }) => {
   };
 
   return (
-    <StyledForm onSubmit={handleSubmit}>
-      <StyledInput
-        type="text"
-        placeholder="Nome"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        required
-      />
-      <StyledInput
-        type="email"
-        placeholder="E-mail"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
-      <StyledInput
-        type="text"
-        placeholder="Endereço"
-        value={address}
-        onChange={(e) => setAddress(e.target.value)}
-        required
-      />
-      <StyledInput
-        type="tel"
-        placeholder="Telefone"
-        value={phone}
-        onChange={(e) => setPhone(e.target.value)}
-        required
-      />
-      <StyledButton type="submit">Adicionar Contato</StyledButton>
-    </StyledForm>
+    <FormContainer onSubmit={handleSubmit}>
+      <StyledInput type="text" placeholder="Nome" value={name} onChange={(e) => setName(e.target.value)} required />
+      <StyledInput type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+      <StyledInput type="text" placeholder="Endereço" value={address} onChange={(e) => setAddress(e.target.value)} required />
+      <StyledInput type="tel" placeholder="Telefone" value={phone} onChange={(e) => setPhone(e.target.value)} required />
+      <StyledButton type="submit">{editingIndex !== null ? 'Atualizar' : 'Adicionar'}</StyledButton>
+    </FormContainer>
   );
 };
 
